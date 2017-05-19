@@ -23,12 +23,12 @@ class player:
 
 
 #Create Players Systematically
-def createXPlayers(x, lst):
+def createXPlayers(x, lst, skillDifference):
     i = 0
     lastRating = 1000
     while i < x:
         lst.append(player(lastRating))
-        lastRating += 25
+        lastRating += skillDifference
         lst[i].id = i
         i+=1
 
@@ -180,7 +180,7 @@ def calculateWinPercent(player, playersPerGame): #Requires the player and the nu
 def smallTournament(numPlayers, numGames, numPlayersPerGame):  #Self-explanatory
     playMat=[] #EmptyIt
     condorSet=[] #EmptyIt
-    createXPlayers(numPlayers, playMat) #FillIt
+    createXPlayers(numPlayers, playMat, 25) #FillIt
 
 ##COMMENT THIS OUT IF YOU WANT A TRULY FAIR/RANDOM GAME
 ##    playMat[0].cheater = True #Player 1 becomes a "genius" who never loses (all losses are ties)
@@ -212,11 +212,11 @@ def smallTournament(numPlayers, numGames, numPlayersPerGame):  #Self-explanatory
         stats.append([each.game, each.id])
     stats.sort(reverse=True)
     mean = calculateMeanGames(playMat)
-    print("----------------")
-    print("Mean Games Played:", mean)
-    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
-    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
-    print("----------------")
+##    print("----------------")
+##    print("Mean Games Played:", mean)
+##    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
+##    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
+##    print("----------------")
 
 ##############################################################################
 
@@ -278,37 +278,38 @@ def getEloWinners(playMat, playersPerGame):  #Requires the List of players and p
     for each in playMat:
         stats.append([each.W, each.id+1])
     stats.sort(reverse=True)
-    print("----[WINS, PLAYER] BY RANK----")
-    print(stats)
-##    print("----PLAYERS AND WIN PERCENTAGE----")  ##Choose Either this or the next print loop to be commented out
+##    print("----[WINS, PLAYER] BY RANK----")
+##    print(stats)
+####    print("----PLAYERS AND WIN PERCENTAGE----")  ##Choose Either this or the next print loop to be commented out
+####    for each in stats:
+####        if each[0] > calculateAverage(playMat):
+####            print("Player", each[1], "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
+##    print("----ELOS AND CONDORCET WINS----")
 ##    for each in stats:
-##        if each[0] > calculateAverage(playMat):
-##            print("Player", each[1], "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
-    print("----ELOS AND CONDORCET WINS----")
-    for each in stats:
-        print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
+##        print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
 
-def simulate(numPlayers, numGames, numPlayersPerGame): #Same as Main Function
+def simulate(numPlayers, numGames, numPlayersPerGame, skillDifference, fileName): #Same as Main Function
     playMat = [] #Empty it
     condorSet = [] #Empty it
-    createXPlayers(numPlayers, playMat) #Fill it
+    createXPlayers(numPlayers, playMat, skillDifference) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     ##WRITES OUTPUT OF RMSE TO FILES FOR GRAPHING PURPOSES
-#    w = open("condormse.txt", mode = 'w')
-    #f = open("condoridx.txt", mode = 'w')
+    w = open(fileName+".txt", mode = 'w')
+##    f = open(fileName+"rank.txt",mode = 'w')
     while i < numGames:
         gameSim(calculateElos(chooseXPlayersFrom(numPlayersPerGame,playMat, i, numGames)), playMat, condorSet) #Magic!
         i+=1
-##        if i%25 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
-##            condorGetWinners(condorSet, playMat)
-##            w.write(str(RMSE(playMat, i)))
-##            #f.write(str(i))
-##            w.write("\n")
-##            #f.write("\n")
-#    w.close()
-    #f.close()
-    printEloMatrix(playMat, condorSet)
+        #if i%25 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
+        condorGetWinners(condorSet, playMat)
+        results = RMSE(playMat, i)
+        w.write(str(i) + ", "+ str(results[0]))
+##        f.write(str(results[1]))
+        w.write("\n")
+##        f.write("\n")
+    w.close()
+##    f.close()
+##    printEloMatrix(playMat, condorSet)
     condorGetWinners(condorSet, playMat)
     getEloWinners(playMat, numPlayersPerGame)
     stats = []
@@ -316,11 +317,11 @@ def simulate(numPlayers, numGames, numPlayersPerGame): #Same as Main Function
         stats.append([each.game, each.id])
     stats.sort(reverse=True)
     mean = calculateMeanGames(playMat)
-    print("----------------")
-    print("Mean Games Played:", mean)
-    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
-    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
-    print("----------------")
+##    print("----------------")
+##    print("Mean Games Played:", mean)
+##    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
+##    print("Least Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
+##    print("----------------")
 
 
 ##CONDORCET WINNER SYSTEM##
@@ -384,14 +385,16 @@ def RMSE(players, numGames):
     rmse = sqrt(rmse/len(players))#Divide by numPlayers and Square Root it
 
     #Fancy printing for feedback (comment out for faster execution)
-##    print("-------ACTUAL-COMPUTED-------")
-##    idx = 0
-##    while idx < len(players):
-##        print("Rank", idx+1, ":", ACT[idx][1]+1,"-", COMP[idx][1]+1)
-##        idx+=1
-##    print("TOTAL GAMES:", numGames)
-##    print("RMSE:", rmse)
-    return rmse
+    #print("-------ACTUAL-COMPUTED-------")
+    idx = 0
+    currentPlayerRanks = [];
+    while idx < len(players):
+#        print("Rank", idx+1, ":", ACT[idx][1]+1,"-", COMP[idx][1]+1)
+        currentPlayerRanks.append(COMP[idx][1]+1)
+        idx+=1
+    #print("TOTAL GAMES:", numGames)
+    #print("RMSE:", rmse)
+    return rmse, currentPlayerRanks
     
 
 ##DEBUGGING    
@@ -409,6 +412,20 @@ def RMSE(players, numGames):
 ##players = [a,b,c,d]
 ##gameSim(calculateElos(players))
 
-simulate(5, 1000, 3)
+#simulate(10, 5000, 3)
 #smallTournament(10, 2000, 4)
+
+def produceStats():
+##    playersInGame = 2;
+    for playersInTournament in range(40, 51, 10):
+        for playersInGame in range(2,6):
+            for games in range(10000, 50000, 10000):
+                for skillDifference in range(5, 75, 30):
+##                    for trial in range(5):
+                    trial = 0;
+                    fileName = str(playersInTournament)+"PsInT" + str(playersInGame)+"PsInG"+str(games)+ "GsSkillD" + str(skillDifference) + "Trial" + str(trial+1);
+                    simulate(playersInTournament, games, playersInGame, skillDifference, fileName);
+                print(fileName);
+
+produceStats()
 
