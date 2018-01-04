@@ -2,6 +2,7 @@
 #Dallas Mullet
 from random import *
 from math import *
+from time import *
 
 #Players
 #Player object with several values that are tracked through several stages of the game
@@ -290,21 +291,25 @@ def getEloWinners(playMat, playersPerGame):  #Requires the List of players and p
     for each in stats:
         print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
 
-def simulate(numPlayers, numGames, numPlayersPerGame, disparity): #Same as Main Function
+def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeLimit): #Same as Main Function
+    start = time()
+    timeTaken = 0
     playMat = [] #Empty it
     condorSet = [] #Empty it
     createXPlayers(numPlayers, playMat, disparity) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     ##WRITES OUTPUT OF RMSE TO FILES FOR GRAPHING PURPOSES
-    w = open("condormse.txt", mode = 'w')
-    while i < numGames:
+    print(fileName)
+    w = open(fileName, mode = 'w')
+    while i < numGames and timeTaken < timeLimit:
         gameSim(calculateElos(chooseXPlayersFrom(numPlayersPerGame,playMat, i, numGames)), playMat, condorSet) #Magic!
         i+=1
-        if i%25 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
+        if i%250 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
             condorGetWinners(condorSet, playMat)
             w.write(str(RMSE(playMat, i)))
             w.write("\n")
+            timeTaken = time() - start
     w.close()
     printEloMatrix(playMat, condorSet)
     condorGetWinners(condorSet, playMat)
