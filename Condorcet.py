@@ -2,6 +2,7 @@
 #Dallas Mullet
 from random import *
 from math import *
+from time import *
 
 #Players
 #Player object with several values that are tracked through several stages of the game
@@ -23,12 +24,12 @@ class player:
 
 
 #Create Players Systematically
-def createXPlayers(x, lst):
+def createXPlayers(x, lst, disparity):
     i = 0
     lastRating = 1000
     while i < x:
         lst.append(player(lastRating))
-        lastRating += 25
+        lastRating += disparity
         lst[i].id = i
         i+=1
 
@@ -49,18 +50,18 @@ def createMatrix(numPlayers, mtrx):
 def printMatrix(playMat, condorSet): #Requires List of Players and Matrix to be printed
     size = len(condorSet)
     p = 0
-    print("ID|GUESS|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
+##    print("ID|GUESS|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
     while p < size:
-        print(playMat[p].id+1,")",playMat[p].prob, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
+##        print(playMat[p].id+1,")",playMat[p].prob, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
         p+=1
 
 #Modified function above to apply to ELO rating
 def printEloMatrix(playMat, condorSet): #Requires List of Players and Matrix to be printed
     size = len(condorSet)
     p = 0
-    print("ID|RATING|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
+##    print("ID|RATING|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
     while p < size:
-        print(playMat[p].id+1,")",playMat[p].elo, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
+##        print(playMat[p].id+1,")",playMat[p].elo, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
         p+=1
 
 #XP Game Logic
@@ -137,20 +138,22 @@ def getWinners(playMat, playersPerGame):  #Requires the List of players and play
     for each in playMat:
         stats.append([each.wins - each.losses, each.id+1])
     stats.sort(reverse=True)
-    print("----WIN-LOSS BY RANK----")
-    print(stats)
-    print("----TOP PLAYERS----")  ##Choose Either this or the next print loop to be commented out
+##    print("----WIN-LOSS BY RANK----")
+##    print(stats)
+##    print("----TOP PLAYERS----")  ##Choose Either this or the next print loop to be commented out
     for each in stats:
         if each[0] > calculateAverage(playMat):
-            print("Player", each[1], "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
-    print("----GUESSES AND WIN PERCENTAGES----")
+            pass
+##            print("Player", each[1], "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
+##    print("----GUESSES AND WIN PERCENTAGES----")
 ##    print("Player 2 Win Percentage:", calculateWinPercent(playMat[1], playersPerGame))
     for each in stats:
-        print("Player", each[1], "Guess:", playMat[each[1]-1].prob, "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
-    print("----WINNERS----- And their Guess")
-    print("1st Place: Player", stats[0][1], "(", playMat[stats[0][1]-1].prob,")")
-    print("2nd Place: Player", stats[1][1], "(", playMat[stats[1][1]-1].prob,")")
-    print("3rd Place: Player", stats[2][1], "(", playMat[stats[2][1]-1].prob,")")
+        pass
+##        print("Player", each[1], "Guess:", playMat[each[1]-1].prob, "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
+##    print("----WINNERS----- And their Guess")
+##    print("1st Place: Player", stats[0][1], "(", playMat[stats[0][1]-1].prob,")")
+##    print("2nd Place: Player", stats[1][1], "(", playMat[stats[1][1]-1].prob,")")
+##    print("3rd Place: Player", stats[2][1], "(", playMat[stats[2][1]-1].prob,")")
 
 #Calc the number of games played on Avrg:
 def calculateMeanGames(playMat):  #Only requires the list of players
@@ -180,7 +183,7 @@ def calculateWinPercent(player, playersPerGame): #Requires the player and the nu
 def smallTournament(numPlayers, numGames, numPlayersPerGame):  #Self-explanatory
     playMat=[] #EmptyIt
     condorSet=[] #EmptyIt
-    createXPlayers(numPlayers, playMat) #FillIt
+    createXPlayers(numPlayers, playMat, 25) #FillIt
 
 ##COMMENT THIS OUT IF YOU WANT A TRULY FAIR/RANDOM GAME
 ##    playMat[0].cheater = True #Player 1 becomes a "genius" who never loses (all losses are ties)
@@ -212,11 +215,11 @@ def smallTournament(numPlayers, numGames, numPlayersPerGame):  #Self-explanatory
         stats.append([each.game, each.id])
     stats.sort(reverse=True)
     mean = calculateMeanGames(playMat)
-    print("----------------")
-    print("Mean Games Played:", mean)
-    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
-    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
-    print("----------------")
+##    print("----------------")
+##    print("Mean Games Played:", mean)
+##    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
+##    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
+##    print("----------------")
 
 ##############################################################################
 
@@ -288,26 +291,26 @@ def getEloWinners(playMat, playersPerGame):  #Requires the List of players and p
     for each in stats:
         print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
 
-def simulate(numPlayers, numGames, numPlayersPerGame): #Same as Main Function
+def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeLimit): #Same as Main Function
+    start = time()
+    timeTaken = 0
     playMat = [] #Empty it
     condorSet = [] #Empty it
-    createXPlayers(numPlayers, playMat) #Fill it
+    createXPlayers(numPlayers, playMat, disparity) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     ##WRITES OUTPUT OF RMSE TO FILES FOR GRAPHING PURPOSES
-#    w = open("condormse.txt", mode = 'w')
-    #f = open("condoridx.txt", mode = 'w')
-    while i < numGames:
+    print(fileName)
+    w = open(fileName, mode = 'w')
+    while i < numGames and timeTaken < timeLimit:
         gameSim(calculateElos(chooseXPlayersFrom(numPlayersPerGame,playMat, i, numGames)), playMat, condorSet) #Magic!
         i+=1
-##        if i%25 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
-##            condorGetWinners(condorSet, playMat)
-##            w.write(str(RMSE(playMat, i)))
-##            #f.write(str(i))
-##            w.write("\n")
-##            #f.write("\n")
-#    w.close()
-    #f.close()
+        if i%250 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
+            condorGetWinners(condorSet, playMat)
+            w.write(str(RMSE(playMat, i)))
+            w.write("\n")
+            timeTaken = time() - start
+    w.close()
     printEloMatrix(playMat, condorSet)
     condorGetWinners(condorSet, playMat)
     getEloWinners(playMat, numPlayersPerGame)
@@ -319,7 +322,7 @@ def simulate(numPlayers, numGames, numPlayersPerGame): #Same as Main Function
     print("----------------")
     print("Mean Games Played:", mean)
     print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
-    print("LEst Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
+    print("Least Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
     print("----------------")
 
 
@@ -409,11 +412,6 @@ def RMSE(players, numGames):
 ##players = [a,b,c,d]
 ##gameSim(calculateElos(players))
 
-simulate(4, 1000, 4)
-simulate(4, 900, 4)
-simulate(4, 800, 4)
-simulate(4, 700, 4)
-simulate(4, 600, 4)
-
+#simulate(5, 1000, 3)
 #smallTournament(10, 2000, 4)
 
