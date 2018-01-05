@@ -292,7 +292,7 @@ def getEloWinners(playMat, playersPerGame):  #Requires the List of players and p
         pass
 ##        print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
 
-def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeLimit): #Same as Main Function
+def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName="", timeLimit=1000): #Same as Main Function
     start = time()
     timeTaken = 0
     playMat = [] #Empty it
@@ -300,14 +300,18 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeL
     createXPlayers(numPlayers, playMat, disparity) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
+    
     ##WRITES OUTPUT OF RMSE TO FILES FOR GRAPHING PURPOSES
     print(fileName)
     w = open(fileName, mode = 'w')
     while i < numGames and timeTaken < timeLimit:
         gameSim(calculateElos(chooseXPlayersFrom(numPlayersPerGame,playMat, i, numGames)), playMat, condorSet) #Magic!
         i+=1
-        if i%125 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
+        reportFrequency = generateReportFrequency(i)
+        if i%reportFrequency == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
             condorGetWinners(condorSet, playMat)
+            w.write(str(i))
+            w.write(", ")
             w.write(str(RMSE(playMat, i)))
             w.write("\n")
             timeTaken = time() - start
@@ -326,6 +330,19 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeL
 ##    print("Least Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
 ##    print("----------------")
 
+def generateReportFrequency(i):
+    if i <= 1:
+        return 1
+    elif i <= 100:
+        return 5
+    elif i <= 1000:
+        return 50
+    elif i <= 10000:
+        return 500
+    elif i <= 100000:
+        return 5000
+    else:
+        return 500000
 
 ##CONDORCET WINNER SYSTEM##
 def condorGetWinners(matrix, players):
@@ -413,6 +430,6 @@ def RMSE(players, numGames):
 ##players = [a,b,c,d]
 ##gameSim(calculateElos(players))
 
-#simulate(5, 1000, 3)
+##simulate(100, 100000, 5, 20, "test.txt", 1000)
 #smallTournament(10, 2000, 4)
 
