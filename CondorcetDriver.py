@@ -27,7 +27,7 @@ def DriveSimulator():
                     printLine()
                     print("number of players = ", thisNumPlayers, "number of games = ", thisNumGames, "discrepancy = ", thisDiscrepancy, "number of players per game = ", thisNumPlayersPerGame)
                     fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, trial)
-                    Condorcet.simulate(thisNumPlayers, thisNumGames, thisDiscrepancy, thisNumPlayersPerGame, fileName, 20)
+                    Condorcet.simulate(thisNumPlayers, thisNumGames, thisDiscrepancy, thisNumPlayersPerGame, fileName, 100)
     end = time.time()
     print(end-start)
 

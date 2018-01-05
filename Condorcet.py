@@ -281,15 +281,16 @@ def getEloWinners(playMat, playersPerGame):  #Requires the List of players and p
     for each in playMat:
         stats.append([each.W, each.id+1])
     stats.sort(reverse=True)
-    print("----[WINS, PLAYER] BY RANK----")
-    print(stats)
+##    print("----[WINS, PLAYER] BY RANK----")
+##    print(stats)
 ##    print("----PLAYERS AND WIN PERCENTAGE----")  ##Choose Either this or the next print loop to be commented out
 ##    for each in stats:
 ##        if each[0] > calculateAverage(playMat):
 ##            print("Player", each[1], "Win Percentage:", calculateWinPercent(playMat[each[1]-1], playersPerGame))
-    print("----ELOS AND CONDORCET WINS----")
+##    print("----ELOS AND CONDORCET WINS----")
     for each in stats:
-        print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
+        pass
+##        print("Player", each[1], "Rating:", playMat[each[1]-1].elo, "Defeated Players:", playMat[each[1]-1].W)
 
 def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeLimit): #Same as Main Function
     start = time()
@@ -319,11 +320,11 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeL
         stats.append([each.game, each.id])
     stats.sort(reverse=True)
     mean = calculateMeanGames(playMat)
-    print("----------------")
-    print("Mean Games Played:", mean)
-    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
-    print("Least Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
-    print("----------------")
+##    print("----------------")
+##    print("Mean Games Played:", mean)
+##    print("Most Games Played:", stats[0][0], "(+", stats[0][0]-mean,")")
+##    print("Least Games Played:", stats[-1][0], "(-", mean-stats[-1][0],")")
+##    print("----------------")
 
 
 ##CONDORCET WINNER SYSTEM##
