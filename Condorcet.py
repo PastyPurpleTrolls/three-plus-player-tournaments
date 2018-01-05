@@ -331,18 +331,16 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName="", ti
 ##    print("----------------")
 
 def generateReportFrequency(i):
-    if i <= 1:
+    if i <= 10:
         return 1
     elif i <= 100:
         return 5
     elif i <= 1000:
         return 50
     elif i <= 10000:
-        return 500
-    elif i <= 100000:
-        return 5000
+        return 250
     else:
-        return 500000
+        return 1000
 
 ##CONDORCET WINNER SYSTEM##
 def condorGetWinners(matrix, players):
