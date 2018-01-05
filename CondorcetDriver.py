@@ -19,7 +19,7 @@ def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials):
     timeLimitMinutes = 2
     timeLimit = timeLimitMinutes*60
     discrepancyRangeList = [280, 560, 1120]
-    baseNumPlayers = [10, 40, 70, 130, 250]
+    baseNumPlayers = [10, 20, 40, 70, 130, 250]
     for discrepancyIdx in range(0, len(discrepancyRangeList)):
         thisDiscrepancyRange = discrepancyRangeList[discrepancyIdx]
         for numPlayersPerGameIdx in range(0, len(baseNumPlayersPerGame)):
@@ -31,9 +31,9 @@ def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials):
                 for trial in range(firstTrial,firstTrial+numberOfTrials):
                     thisNumGames = baseNumGames                    
                     printLine()
-                    print("number of players = ", thisNumPlayers, "number of games = ", thisNumGames, "discrepancy = ", thisDiscrepancyRange, "number of players per game = ", thisNumPlayersPerGame)
-                    fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancyRange, trial)
                     if (i%numberOfMachines == 0):
+                        print("number of players = ", thisNumPlayers, "number of games = ", thisNumGames, "discrepancy = ", thisDiscrepancyRange, "number of players per game = ", thisNumPlayersPerGame)
+                        fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancyRange, trial)
                         Condorcet.simulate(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit)
                     i+=1
     end = time.time()
@@ -41,7 +41,7 @@ def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials):
 
 
 
-DriveSimulator(5, 0, 6, 1)
+DriveSimulator(4, 4, 6, 1)
 
 
             
