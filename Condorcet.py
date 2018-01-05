@@ -50,18 +50,18 @@ def createMatrix(numPlayers, mtrx):
 def printMatrix(playMat, condorSet): #Requires List of Players and Matrix to be printed
     size = len(condorSet)
     p = 0
-##    print("ID|GUESS|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
+    print("ID|GUESS|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
     while p < size:
-##        print(playMat[p].id+1,")",playMat[p].prob, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
+        print(playMat[p].id+1,")",playMat[p].prob, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
         p+=1
 
 #Modified function above to apply to ELO rating
 def printEloMatrix(playMat, condorSet): #Requires List of Players and Matrix to be printed
     size = len(condorSet)
     p = 0
-##    print("ID|RATING|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
+    print("ID|RATING|1   2   3   4   5   6   7   8   9   10   11   12   13   14   15...")
     while p < size:
-##        print(playMat[p].id+1,")",playMat[p].elo, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
+        print(playMat[p].id+1,")",playMat[p].elo, condorSet[p], "Wins:", playMat[p].wins, "Losses:", playMat[p].losses, "Total Games:", playMat[p].game)
         p+=1
 
 #XP Game Logic
@@ -242,19 +242,19 @@ def calculateElos(players):
 
 def gameSim(playerElos, players, condorSet):
     win = (randrange(0, 100)/100) #randomly picked number
-    #print("Win:", win)
+##    print("Win:", win)
     stats=[]
     mark = 0
     for each in playerElos:
         mark+=each[0]
         stats.append(mark)
-    #print(stats)
+##    print(stats)
     numPlayers = len(players)
     p = 0
     while p < numPlayers and win > stats[p]:
         p+=1
     winner = playerElos[p][1]
-    #print("Winner:",winner)
+##    print("Winner:",winner)
     simAward(winner, playerElos, players, condorSet)
 
 def simAward(winIdx, elosIds, players, matrix): #Takes the Player Index of the winner, the list made by CalcElos, complete list of all players, and matrix
@@ -306,13 +306,13 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName, timeL
     while i < numGames and timeTaken < timeLimit:
         gameSim(calculateElos(chooseXPlayersFrom(numPlayersPerGame,playMat, i, numGames)), playMat, condorSet) #Magic!
         i+=1
-        if i%250 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
+        if i%125 == 0: #Every %# games, stop and write the RMSE and number of games to a file called "condormse" Comment out if not graphing
             condorGetWinners(condorSet, playMat)
             w.write(str(RMSE(playMat, i)))
             w.write("\n")
             timeTaken = time() - start
     w.close()
-    printEloMatrix(playMat, condorSet)
+##    printEloMatrix(playMat, condorSet)
     condorGetWinners(condorSet, playMat)
     getEloWinners(playMat, numPlayersPerGame)
     stats = []
