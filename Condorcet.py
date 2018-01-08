@@ -105,27 +105,16 @@ def chooseXPlayersFrom(x,lst,gameIdx, numGames): #Num of Players to choose, List
     choice=set() #No duplicates
     stats=[]
     lngth = len(lst)
+    listCopy = []
     if x >= lngth: #Shortcut (if you want all the players there's no need for this)
         choice = lst
     else:
         for each in lst:
             stats.append([each.game, each.id])
             stats.sort(reverse=True)
-        while len(choice) < x:
-            for each in lst:
-                each.rand = randrange(0,lngth) #Random Choice
-            for each in lst:
-                if each.game == stats[-1][1]: #Prioritize ones with least games played
-                    choice.add(each)
-                if each.rand == 1 and each.game <= gameIdx:  
-                   choice.add(each)   
-
-    while len(choice) > x: #No extras.  Prioritize removal of those with most games played
-        for each in list(choice): 
-            if (each.game > (numGames//x) and each.game > gameIdx and each.game > calculateMeanGames(lst)) or each.id == stats[0][1]:
-                choice.remove(each)
-        if len(choice) > x: #If everyone's not played too many games, just pop off a random one
-            choice.pop()
+            listCopy.append(each)
+        shuffle(listCopy, random)
+        choice = listCopy[0:x]
             
     for each in choice:
         each.game+=1 #Increment game count to help future choices
