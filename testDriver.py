@@ -2,7 +2,7 @@ import calculatePower
 import CondorcetDriver
 
 numberOfMachines = 6
-machineNumber = 1
+machineNumber = 2
 firstTrial = 1
 numberOfTrials = 5
 baseNumPlayersPerGame = [4]
