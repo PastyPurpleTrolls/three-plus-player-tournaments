@@ -54,5 +54,5 @@ def calculateLeastSquares(a, b, c, d, fileName, f):
     
 
 
-CondorcetDriver.trialGenerator(1, 1, 6, 1, calculateLeastSquares)
+##CondorcetDriver.trialGenerator(1, 1, 6, 1, calculateLeastSquares)
 
