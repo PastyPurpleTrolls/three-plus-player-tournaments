@@ -364,19 +364,19 @@ def clearCondor(players): #Clears wins, losses, and ties so that the above funct
 def RMSE(players, numGames):
     #Get Actual Ratings
     ACT = []
-    for each in players:
-        ACT.append([each.elo, each.id])
-    ACT.sort(reverse=True)
-    #ACTual Ratings are now Stored in ACT based on their index
-
-    #Rank based on calculated CONDORCET WINS
     COMP = []
     for each in players:
+        ACT.append([each.elo, each.id])
         if each.game != 0:
             COMP.append([each.W, each.id])
         else:
             COMP.append([0, each.id])
-    COMP.sort(reverse=True)
+    ACT.sort(reverse=True)
+    COMP.sort(key=lambda x: x[0], reverse=True)
+    #ACTual Ratings are now Stored in ACT based on their index
+
+    #Rank based on calculated CONDORCET WINS
+    
     #COMPuted Wins are stored in COMP, ranked by their index
 
     rmse = 0
