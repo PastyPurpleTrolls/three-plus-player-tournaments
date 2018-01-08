@@ -16,10 +16,10 @@ def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, 
     start = time.time()
     baseNumPlayersPerGame = [4]
     baseNumGames = 100000
-    timeLimitMinutes = 5
+    timeLimitMinutes = 20
     timeLimit = timeLimitMinutes*60
     discrepancyRangeList = [500]
-    baseNumPlayers = [20]
+    baseNumPlayers = [500]
     for discrepancyIdx in range(0, len(discrepancyRangeList)):
         thisDiscrepancyRange = discrepancyRangeList[discrepancyIdx]
         for numPlayersPerGameIdx in range(0, len(baseNumPlayersPerGame)):
