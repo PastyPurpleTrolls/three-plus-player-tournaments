@@ -11,11 +11,10 @@ def generateFileName(numPlayers, numPlayersPerGame, discrepancyRange, trial):
 
 
 
-def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, function): #@Kyle pass a function with 6 parameters to do that thing to the variables that trial generator generates
+def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, function):
     i = machineNumber # should range between 1 and number of machines
     start = time.time()
-    baseNumGames = 100000
-    timeLimitMinutes = 2
+    baseNumGames = numGames
     timeLimit = timeLimitMinutes*60
     for discrepancyIdx in range(0, len(discrepancyRangeList)):
         thisDiscrepancyRange = discrepancyRangeList[discrepancyIdx]
@@ -33,8 +32,8 @@ def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, 
     end = time.time()
     print(end-start)
 
-def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers):
-    trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, Condorcet.simulate)
+def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes):
+    trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, Condorcet.simulate)
 
 ##DriveSimulator(4, 4, 6, 1)
 
