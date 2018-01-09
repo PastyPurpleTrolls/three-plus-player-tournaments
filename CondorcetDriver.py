@@ -1,17 +1,18 @@
 import Condorcet
 import time
+import inspect
 
 def printLine():
     print('----------------')
 
 
-def generateFileName(numPlayers, numPlayersPerGame, discrepancyRange, trial):
-    fileName = "CondorcetData/_discrepancyRange" + str(discrepancyRange) + "_numPlayers" + str(numPlayers) + "_numPlayersPerGame" + str(numPlayersPerGame) + "_trial" + str(trial) + ".txt"
+def generateFileName(numPlayers, numPlayersPerGame, discrepancyRange, trial, directory):
+    fileName = str(directory) + "_discrepancyRange" + str(discrepancyRange) + "_numPlayers" + str(numPlayers) + "_numPlayersPerGame" + str(numPlayersPerGame) + "_trial" + str(trial) + ".txt"
     return(fileName)
 
 
 
-def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, function):
+def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, directory, targetVar, function):
     i = machineNumber # should range between 1 and number of machines
     start = time.time()
     baseNumGames = numGames
@@ -26,14 +27,20 @@ def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, 
                 for trial in range(firstTrial,firstTrial+numberOfTrials):
                     thisNumGames = baseNumGames                    
                     if (i%numberOfMachines == 0):
-                        fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancyRange, trial)
-                        function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit)
+                        fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancyRange, trial, directory)
+                        argspecs = inspect.getargspec(function)
+                        argCount = (len(argspecs.args))
+                        print(argCount)
+                        if (argCount == 6):
+                            function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit)
+                        elif (argCount == 7):
+                            function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar)                         
                     i+=1
     end = time.time()
     print(end-start)
 
-def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes):
-    trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, Condorcet.simulate)
+def DriveSimulator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, directory, targetVar):
+    trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, baseNumPlayersPerGame, discrepancyRangeList, baseNumPlayers, numGames, timeLimitMinutes, directory, targetVar, Condorcet.simulate)
 
 ##DriveSimulator(4, 4, 6, 1)
 

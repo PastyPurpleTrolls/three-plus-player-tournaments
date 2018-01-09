@@ -285,3 +285,5 @@ CondorcetData/_discrepancyRange50000_numPlayers70_numPlayersPerGame8_trial1.txt:
 CondorcetData/_discrepancyRange50000_numPlayers80_numPlayersPerGame8_trial1.txt: Equation: y =63.6902849036181* x^-0.20148461854
 CondorcetData/_discrepancyRange50000_numPlayers90_numPlayersPerGame8_trial1.txt: Equation: y =75.362654329549* x^-0.215874346186
 CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame8_trial1.txt: Equation: y =85.8019723018954* x^-0.214812080685
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame8_trial1.txt: Equation: y =1.4142135623730951* x^0.0
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame8_trial1.txt: Equation: y =1.4142135623730951* x^0.0
