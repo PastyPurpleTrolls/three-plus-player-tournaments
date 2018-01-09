@@ -117,6 +117,37 @@ CondorcetData/_discrepancyRange100000_numPlayers100_numPlayersPerGame8_trial1.tx
 
 
 
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame4_trial1.txt: Equation: y =1.4142135623730951* x^0.0
+CondorcetData/_discrepancyRange50000_numPlayers8_numPlayersPerGame4_trial1.txt: Equation: y =1.5274322390463981* x^-0.0740208933809
+CondorcetData/_discrepancyRange50000_numPlayers10_numPlayersPerGame4_trial1.txt: Equation: y =3.4198582679052145* x^-0.179761032832
+CondorcetData/_discrepancyRange50000_numPlayers15_numPlayersPerGame4_trial1.txt: Equation: y =6.572061430994527* x^-0.226366065044
+CondorcetData/_discrepancyRange50000_numPlayers20_numPlayersPerGame4_trial1.txt: Equation: y =13.966839425259124* x^-0.346771384996
+CondorcetData/_discrepancyRange50000_numPlayers30_numPlayersPerGame4_trial1.txt: Equation: y =23.395516394450937* x^-0.347184179536
+CondorcetData/_discrepancyRange50000_numPlayers40_numPlayersPerGame4_trial1.txt: Equation: y =35.814481838136814* x^-0.378961264062
+CondorcetData/_discrepancyRange50000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =71.86866951058134* x^-0.43561803298
+CondorcetData/_discrepancyRange50000_numPlayers60_numPlayersPerGame4_trial1.txt: Equation: y =131.50179410774916* x^-0.506020282939
+CondorcetData/_discrepancyRange50000_numPlayers70_numPlayersPerGame4_trial1.txt: Equation: y =111.52937410599607* x^-0.425027162162
+CondorcetData/_discrepancyRange50000_numPlayers80_numPlayersPerGame4_trial1.txt: Equation: y =117.73385229227127* x^-0.41258171864
+CondorcetData/_discrepancyRange50000_numPlayers90_numPlayersPerGame4_trial1.txt: Equation: y =150.03303245487166* x^-0.425483327371
+CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =182.77192814502695* x^-0.441261898742
+
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame8_trial1.txt: Equation: y =1.4142135623730951* x^0.0
+CondorcetData/_discrepancyRange50000_numPlayers8_numPlayersPerGame8_trial1.txt: Equation: y =3.7416573867739418* x^2.60542955316e-32
+CondorcetData/_discrepancyRange50000_numPlayers10_numPlayersPerGame8_trial1.txt: Equation: y =4.351151451582624* x^-0.0559111684707
+CondorcetData/_discrepancyRange50000_numPlayers15_numPlayersPerGame8_trial1.txt: Equation: y =6.7576319387899835* x^-0.0988034425499
+CondorcetData/_discrepancyRange50000_numPlayers20_numPlayersPerGame8_trial1.txt: Equation: y =9.999380122707542* x^-0.140986834537
+CondorcetData/_discrepancyRange50000_numPlayers30_numPlayersPerGame8_trial1.txt: Equation: y =16.686913647902973* x^-0.146217913018
+CondorcetData/_discrepancyRange50000_numPlayers40_numPlayersPerGame8_trial1.txt: Equation: y =27.24181586087685* x^-0.198736183973
+CondorcetData/_discrepancyRange50000_numPlayers50_numPlayersPerGame8_trial1.txt: Equation: y =38.449324148607225* x^-0.204871520869
+CondorcetData/_discrepancyRange50000_numPlayers60_numPlayersPerGame8_trial1.txt: Equation: y =45.99805814753666* x^-0.209441684581
+CondorcetData/_discrepancyRange50000_numPlayers70_numPlayersPerGame8_trial1.txt: Equation: y =44.98360230316816* x^-0.174104511696
+CondorcetData/_discrepancyRange50000_numPlayers80_numPlayersPerGame8_trial1.txt: Equation: y =63.6902849036181* x^-0.20148461854
+CondorcetData/_discrepancyRange50000_numPlayers90_numPlayersPerGame8_trial1.txt: Equation: y =75.362654329549* x^-0.215874346186
+CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame8_trial1.txt: Equation: y =85.8019723018954* x^-0.214812080685
+
+
+
+
 
 CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame2_trial1.txt: Equation: y =32.67724711276268* x^-0.357046383138
 CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame3_trial1.txt: Equation: y =31.600150251951295* x^-0.366197382562
@@ -133,13 +164,14 @@ CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame13_trial1.txt:
 CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame14_trial1.txt: Equation: y =40.03469704120508* x^-0.406528060763
 CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame15_trial1.txt: Equation: y =22.623521813222894* x^-0.320576627997
 CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame20_trial1.txt: Equation: y =33.24469295766621* x^-0.397334610522
-CondorcetData/_discrepancyRange1000_numPlayers30_numPlayersPerGame30_trial1.txt: Equation: y =12.60561947137984* x^-0.106326246197
+
+
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame2_trial1.txt: Equation: y =83.42583049938415* x^-0.358563182829
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame3_trial1.txt: Equation: y =69.44277353450295* x^-0.348399600199
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame4_trial1.txt: Equation: y =62.55837333936456* x^-0.33526019975
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame5_trial1.txt: Equation: y =54.75262706754097* x^-0.324096900853
-CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame6_trial1.txt: Equation: y =56.755188904037* x^-0.329907281817
-CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame7_trial1.txt: Equation: y =57.971877279358736* x^-0.32822517081
+CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame6_trial1.txt: Equation: y =56.755188904037*   x^-0.329907281817
+CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame7_trial1.txt: Equation: y =57.971877279358736*x^-0.32822517081
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame8_trial1.txt: Equation: y =64.71780985693647* x^-0.344529833884
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame9_trial1.txt: Equation: y =66.06015604738901* x^-0.344852461067
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame10_trial1.txt: Equation: y =63.30297196491518* x^-0.338932608548
@@ -150,3 +182,106 @@ CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame14_trial1.txt:
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame15_trial1.txt: Equation: y =59.77411703703392* x^-0.337773147314
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame20_trial1.txt: Equation: y =65.11993139267445* x^-0.338096988554
 CondorcetData/_discrepancyRange1000_numPlayers60_numPlayersPerGame30_trial1.txt: Equation: y =64.88014376820523* x^-0.356383719043
+
+
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame2_trial1.txt: Equation: y =51.25567393273508* x^-0.193959211639
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =60.86662931949498* x^-0.245740128528
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame6_trial1.txt: Equation: y =52.356574274062694* x^-0.239395023546
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame8_trial1.txt: Equation: y =55.22095850060978* x^-0.241217406065
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame10_trial1.txt: Equation: y =64.22863319104859* x^-0.262359562965
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame12_trial1.txt: Equation: y =57.242899117950586* x^-0.250265559199
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame15_trial1.txt: Equation: y =65.46853727895278* x^-0.27414594788
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame20_trial1.txt: Equation: y =54.85348141656873* x^-0.247181095835
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame30_trial1.txt: Equation: y =61.04322823564811* x^-0.262270752342
+
+
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame2_trial1.txt: Equation: y =158.04985848023682* x^-0.371192992723
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =119.66793930590067* x^-0.350711227754
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame6_trial1.txt: Equation: y =117.58731334844934* x^-0.345768098775
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame8_trial1.txt: Equation: y =126.54882318939939* x^-0.345351414882
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame10_trial1.txt: Equation: y =127.93399525028696* x^-0.356603018727
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame12_trial1.txt: Equation: y =120.3514639197136* x^-0.349991410078
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame15_trial1.txt: Equation: y =103.62454762906195* x^-0.312023220117
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame20_trial1.txt: Equation: y =117.18973685413056* x^-0.336961475446
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame30_trial1.txt: Equation: y =126.24714354702103* x^-0.347178895076
+
+
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame2_trial1.txt: Equation: y =19.04234759417269* x^-0.287914175618
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame4_trial1.txt: Equation: y =20.963480747766155* x^-0.346489418219
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame8_trial1.txt: Equation: y =15.84587686761121* x^-0.176952159399
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame2_trial1.txt: Equation: y =16.954905274197614* x^-0.278334048035
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame4_trial1.txt: Equation: y =30.00687052040051* x^-0.408333218484
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame6_trial1.txt: Equation: y =19.098869342570968* x^-0.227748441719
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame8_trial1.txt: Equation: y =14.725920470930177* x^-0.146907452002
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame10_trial1.txt: Equation: y =19.039590412608366* x^-0.146174077734
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame12_trial1.txt: Equation: y =16.84570673069949* x^-0.114224129382
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame15_trial1.txt: Equation: y =17.499559406491485* x^-0.0900666979384
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame20_trial1.txt: Equation: y =20.9630824007118* x^-0.103114042258
+CondorcetData/_discrepancyRange100000_numPlayers30_numPlayersPerGame30_trial1.txt: Equation: y =16.45195023900409* x^5.21085910631e-32
+
+
+CondorcetData/_discrepancyRange50_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =49.47792043437794* x^-0.173341289975
+CondorcetData/_discrepancyRange100_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =58.4785404233398* x^-0.236284248212
+CondorcetData/_discrepancyRange150_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =56.97156919247678* x^-0.270683942486
+CondorcetData/_discrepancyRange200_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =57.07472054346546* x^-0.277915908868
+CondorcetData/_discrepancyRange250_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =56.52530702307306* x^-0.282107785293
+CondorcetData/_discrepancyRange300_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =50.68176824083205* x^-0.286151663406
+CondorcetData/_discrepancyRange350_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =52.66133676692833* x^-0.294512976774
+CondorcetData/_discrepancyRange400_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =53.555653268940894* x^-0.313794754358
+
+
+CondorcetData/_discrepancyRange1000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =48.176307429548096* x^-0.341618033286
+CondorcetData/_discrepancyRange5000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =60.9714811875555* x^-0.41478288753
+CondorcetData/_discrepancyRange10000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =58.64587403964848* x^-0.393843131419
+CondorcetData/_discrepancyRange20000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =60.702338025115935* x^-0.391211493597
+CondorcetData/_discrepancyRange30000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =79.65097540845157* x^-0.43552599926
+CondorcetData/_discrepancyRange40000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =78.05554441910267* x^-0.457166905069
+CondorcetData/_discrepancyRange50000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =51.98431948108655* x^-0.37074724279
+CondorcetData/_discrepancyRange60000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =66.62931889259892* x^-0.437253139331
+CondorcetData/_discrepancyRange70000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =61.39459104193464* x^-0.4217798199
+CondorcetData/_discrepancyRange80000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =58.867547247919525* x^-0.39251688399
+CondorcetData/_discrepancyRange90000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =56.17786638051532* x^-0.381714016579
+CondorcetData/_discrepancyRange100000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =73.2141387427658* x^-0.44413862761
+
+
+CondorcetData/_discrepancyRange1000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =115.87965762026417* x^-0.344937744112
+CondorcetData/_discrepancyRange5000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =136.30132529826042* x^-0.380928435392
+CondorcetData/_discrepancyRange10000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =151.53509221089135* x^-0.398762335915
+CondorcetData/_discrepancyRange20000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =156.25789749635072* x^-0.418518757744
+CondorcetData/_discrepancyRange30000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =204.4220238357032* x^-0.46435345935
+CondorcetData/_discrepancyRange40000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =160.24126836226208* x^-0.416783264492
+CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =176.03528098036048* x^-0.429887190624
+CondorcetData/_discrepancyRange60000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =150.00435835747365* x^-0.3960201919
+CondorcetData/_discrepancyRange70000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =171.51057573394246* x^-0.428632068589
+CondorcetData/_discrepancyRange80000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =181.42502733186868* x^-0.439513408057
+CondorcetData/_discrepancyRange90000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =158.59507510168493* x^-0.405376886416
+CondorcetData/_discrepancyRange100000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =182.51617817350862* x^-0.437564728897
+
+
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame4_trial1.txt: Equation: y =1.4142135623730951* x^0.0
+CondorcetData/_discrepancyRange50000_numPlayers8_numPlayersPerGame4_trial1.txt: Equation: y =1.5274322390463981* x^-0.0740208933809
+CondorcetData/_discrepancyRange50000_numPlayers10_numPlayersPerGame4_trial1.txt: Equation: y =3.4198582679052145* x^-0.179761032832
+CondorcetData/_discrepancyRange50000_numPlayers15_numPlayersPerGame4_trial1.txt: Equation: y =6.572061430994527* x^-0.226366065044
+CondorcetData/_discrepancyRange50000_numPlayers20_numPlayersPerGame4_trial1.txt: Equation: y =13.966839425259124* x^-0.346771384996
+CondorcetData/_discrepancyRange50000_numPlayers30_numPlayersPerGame4_trial1.txt: Equation: y =23.395516394450937* x^-0.347184179536
+CondorcetData/_discrepancyRange50000_numPlayers40_numPlayersPerGame4_trial1.txt: Equation: y =35.814481838136814* x^-0.378961264062
+CondorcetData/_discrepancyRange50000_numPlayers50_numPlayersPerGame4_trial1.txt: Equation: y =71.86866951058134* x^-0.43561803298
+CondorcetData/_discrepancyRange50000_numPlayers60_numPlayersPerGame4_trial1.txt: Equation: y =131.50179410774916* x^-0.506020282939
+CondorcetData/_discrepancyRange50000_numPlayers70_numPlayersPerGame4_trial1.txt: Equation: y =111.52937410599607* x^-0.425027162162
+CondorcetData/_discrepancyRange50000_numPlayers80_numPlayersPerGame4_trial1.txt: Equation: y =117.73385229227127* x^-0.41258171864
+CondorcetData/_discrepancyRange50000_numPlayers90_numPlayersPerGame4_trial1.txt: Equation: y =150.03303245487166* x^-0.425483327371
+CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame4_trial1.txt: Equation: y =182.77192814502695* x^-0.441261898742
+
+CondorcetData/_discrepancyRange50000_numPlayers4_numPlayersPerGame8_trial1.txt: Equation: y =1.4142135623730951* x^0.0
+CondorcetData/_discrepancyRange50000_numPlayers8_numPlayersPerGame8_trial1.txt: Equation: y =3.7416573867739418* x^2.60542955316e-32
+CondorcetData/_discrepancyRange50000_numPlayers10_numPlayersPerGame8_trial1.txt: Equation: y =4.351151451582624* x^-0.0559111684707
+CondorcetData/_discrepancyRange50000_numPlayers15_numPlayersPerGame8_trial1.txt: Equation: y =6.7576319387899835* x^-0.0988034425499
+CondorcetData/_discrepancyRange50000_numPlayers20_numPlayersPerGame8_trial1.txt: Equation: y =9.999380122707542* x^-0.140986834537
+CondorcetData/_discrepancyRange50000_numPlayers30_numPlayersPerGame8_trial1.txt: Equation: y =16.686913647902973* x^-0.146217913018
+CondorcetData/_discrepancyRange50000_numPlayers40_numPlayersPerGame8_trial1.txt: Equation: y =27.24181586087685* x^-0.198736183973
+CondorcetData/_discrepancyRange50000_numPlayers50_numPlayersPerGame8_trial1.txt: Equation: y =38.449324148607225* x^-0.204871520869
+CondorcetData/_discrepancyRange50000_numPlayers60_numPlayersPerGame8_trial1.txt: Equation: y =45.99805814753666* x^-0.209441684581
+CondorcetData/_discrepancyRange50000_numPlayers70_numPlayersPerGame8_trial1.txt: Equation: y =44.98360230316816* x^-0.174104511696
+CondorcetData/_discrepancyRange50000_numPlayers80_numPlayersPerGame8_trial1.txt: Equation: y =63.6902849036181* x^-0.20148461854
+CondorcetData/_discrepancyRange50000_numPlayers90_numPlayersPerGame8_trial1.txt: Equation: y =75.362654329549* x^-0.215874346186
+CondorcetData/_discrepancyRange50000_numPlayers100_numPlayersPerGame8_trial1.txt: Equation: y =85.8019723018954* x^-0.214812080685

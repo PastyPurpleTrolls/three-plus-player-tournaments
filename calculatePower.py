@@ -5,7 +5,7 @@ import numpy
 import CondorcetDriver
 
 
-def leastSquares(xList, yList, fileName):
+def leastSquares(xList, yList):
     if (len(xList) == 0 or len(yList) == 0):
         print("warning: empty file", fileName)
         return
@@ -13,17 +13,19 @@ def leastSquares(xList, yList, fileName):
     b = r.slope
     c = exp(r.intercept)
     ##print(r)
-    result = ("Equation: y =" +  str(c) + "* x^" + str(b))
+    return [c, b]
     ##print(result)
+    
+def printToDataFile(lsResults, fileName):
+    c = lsResults[0]
+    b = lsResults[1]
+    printableResults = ("Equation: y =" +  str(c) + "* x^" + str(b))
     dataFile = open("EquationsFile.txt", mode = 'a')
     dataFile.write(fileName)
     dataFile.write(": ")
-    dataFile.write(result)
+    dataFile.write(printableResults)
     dataFile.write("\n")
     dataFile.close()
-
-
-   
 
 def readFile(fileName):
     try:
@@ -50,7 +52,9 @@ def readFile(fileName):
 
 def calculateLeastSquares(a, b, c, d, fileName, f):
     pointsListx, pointsListy = readFile(fileName)
-    leastSquares(pointsListx, pointsListy, fileName)
+    result = leastSquares(pointsListx, pointsListy)
+    printToDataFile(result, fileName)
+
     
 
 
