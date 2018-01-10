@@ -40,9 +40,6 @@ def createXPlayers(x, lst, disparity, distributionType):
         maxElo = minElo + disparity
         mean = ((disparityRange//2) + minElo)
         stdDev = disparityRange//6
-        print (mean)
-        print(stdDev)
-        print(disparityRange)
         eloList = []
         for i in range(x):
             newRandomElo = normalvariate(mean, stdDev) 
@@ -52,6 +49,13 @@ def createXPlayers(x, lst, disparity, distributionType):
             print("%2.0f" % (eloList[i]))
             lst.append(player(eloList[i]))
             lst[i].id = i
+##    elif (distributionType == 2): ## bimodal distribution (evenly spread modes)
+##        disparityRange = disparity*x
+##        minElo = 1000
+##        maxElo = minElo + disparity
+##        mean = ((disparityRange//2) + minElo)
+##        stdDev = disparityRange//12
+##        eloList = []
             
 
             
