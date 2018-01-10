@@ -3,6 +3,8 @@ from statistics import *
 from scipy.stats import *
 import numpy
 import CondorcetDriver
+import matplotlib.pyplot as plt
+import inspect
 
 
 def leastSquares(xList, yList):
@@ -12,11 +14,9 @@ def leastSquares(xList, yList):
     r = linregress(xList, yList)
     b = r.slope
     c = exp(r.intercept)
-    ##print(r)
     return [c, b]
-    ##print(result)
     
-def printToDataFile(lsResults, fileName):
+def printEquationToDataFile(lsResults, fileName):
     c = lsResults[0]
     b = lsResults[1]
     printableResults = ("Equation: y =" +  str(c) + "* x^" + str(b))
@@ -24,6 +24,20 @@ def printToDataFile(lsResults, fileName):
     dataFile.write(fileName)
     dataFile.write(": ")
     dataFile.write(printableResults)
+    dataFile.write("\n")
+    dataFile.close()
+
+def printCPointsToDataFile(lsResults, x):
+    c = lsResults[0]
+    dataFile = open("graphPointsC.txt", mode = 'a') 
+    dataFile.write(str(c) + "," + str(x))
+    dataFile.write("\n")
+    dataFile.close()
+
+def printBPointsToDataFile(lsResults, x):
+    b = lsResults[1]
+    dataFile = open("graphPointsB.txt", mode = 'a') 
+    dataFile.write(str(b) + "," + str(x))
     dataFile.write("\n")
     dataFile.close()
 
@@ -50,13 +64,35 @@ def readFile(fileName):
         r.close()
         return xPoints, yPoints
 
-def calculateLeastSquares(a, b, c, d, fileName, f):
+def calculateLeastSquares(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
     pointsListx, pointsListy = readFile(fileName)
     result = leastSquares(pointsListx, pointsListy)
-    printToDataFile(result, fileName)
+    printEquationToDataFile(result, fileName)
 
-    
+def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar):
+    pointsListx, pointsListy = readFile(fileName)
+    result = leastSquares(pointsListx, pointsListy)
+    if (targetVar == 0):
+        X = thisNumPlayers
+    elif (targetVar == 1):
+        X = thisNumPlayersPerGame
+    elif (targetVar == 2):
+        X = thisDiscrepancy
+    printCPointsToDataFile(result, X)
+    printBPointsToDataFile(result, X)
 
+def graphData(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
+    pointsListx, pointsListy = readFile(fileName)
+    result = leastSquares(pointsListx, pointsListy)
+    print (result, thisNumPlayers)
+##    plt.figure(figsize=(8,6), dpi=80)
+##    plt.plot(, , color="blue", linewidth=1.0, linestyle="-")
+##    plt.xlim(4.0,250.0)
+##    plt.xticks(np.linspace(-4,4,9,endpoint=True))
+##    plt.ylim(0.0,9.0)
+##    plt.yticks(np.linspace(-1,1,5,endpoint=True))
+##    plt.savefig("exercice_2.png",dpi=72)
+##    plt.show()
 
-##CondorcetDriver.trialGenerator(1, 1, 6, 1, calculateLeastSquares)
-
+printPointsToDataFile(4, 2, 3, 5, "dataFormat.txt", 5, 2)    
+graphData(4, 2, 3, 4, "dataFormat.txt", 5)
