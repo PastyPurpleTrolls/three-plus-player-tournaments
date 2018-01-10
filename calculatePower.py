@@ -3,8 +3,7 @@ from statistics import *
 from scipy.stats import *
 import numpy
 import CondorcetDriver
-import matplotlib.pyplot as plt
-import inspect
+
 
 
 def leastSquares(xList, yList):
