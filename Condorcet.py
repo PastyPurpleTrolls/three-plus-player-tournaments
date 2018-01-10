@@ -310,7 +310,7 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName="", ti
     timeTaken = 0
     playMat = [] #Empty it
     condorSet = [] #Empty it
-    createXPlayers(numPlayers, playMat, disparity) #Fill it
+    createXPlayers(numPlayers, playMat, disparity, 0) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     

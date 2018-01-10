@@ -1,6 +1,7 @@
 from math import *
 from statistics import *
 from scipy.stats import *
+import matplotlib.pyplot as plt
 import numpy
 import CondorcetDriver
 
@@ -120,6 +121,7 @@ def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, t
     bFileName = printBPointsToDataFile(result, X, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
     graphDataB(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
     graphDataC(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
+    print(bFileName)
 
 def graphDataB(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy):
     pointsListXB, pointsListYB = readFile(bFileName)
