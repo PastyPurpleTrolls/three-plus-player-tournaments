@@ -23,18 +23,17 @@ def trialGenerator(numberOfMachines, machineNumber, firstTrial, numberOfTrials, 
             thisNumPlayersPerGame = baseNumPlayersPerGame[numPlayersPerGameIdx]
             for numPlayerIdx in range (0, len(baseNumPlayers)):
                 thisNumPlayers = baseNumPlayers[numPlayerIdx]
-                thisDiscrepancy = thisDiscrepancyRange//thisNumPlayers
+                thisDiscrepancy = thisDiscrepancyRange//thisNumPlayers ##
                 for trial in range(firstTrial,firstTrial+numberOfTrials):
                     thisNumGames = baseNumGames                    
                     if (i%numberOfMachines == 0):
                         fileName = generateFileName(thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancyRange, trial, directory)
                         argspecs = inspect.getargspec(function)
                         argCount = (len(argspecs.args))
-                        print(argCount)
                         if (argCount == 6):
                             function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit)
                         elif (argCount == 7):
-                            function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar)                         
+                            function(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancyRange, fileName, timeLimit, targetVar)                         
                     i+=1
     end = time.time()
     print(end-start)
