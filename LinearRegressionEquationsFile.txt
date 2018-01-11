@@ -1,0 +1,1 @@
+dataFormat.txt: Equation: y = -0.000105964425627 * x + 1.01671751484

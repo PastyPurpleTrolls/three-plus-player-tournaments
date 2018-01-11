@@ -1,0 +1,1 @@
+dataFormat.txt: Equation: y = (1.29673362836 * ln(x) + -0.0554856757017

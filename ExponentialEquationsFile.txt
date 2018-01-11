@@ -1,0 +1,1 @@
+dataFormat.txt: Equation: y = 0.9814179393585807 * e^(-9.40007258491e-05 * x)
