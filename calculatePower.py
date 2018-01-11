@@ -5,6 +5,7 @@ import numpy
 import CondorcetDriver
 import matplotlib.pyplot as plt
 import inspect
+import os
 
 
 def power(xList, yList):
@@ -139,8 +140,8 @@ def calculateExponential(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, th
     equationType = 3
     printEquationToDataFile(result, fileName, equationType)
 
-def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar):
-    pointsListx, pointsListy = readFile(fileName)
+def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, importFileName, timeLimit, targetVar):
+    pointsListx, pointsListy = readFile(importFileName)
     result = power(pointsListx, pointsListy)
     if (targetVar == 0):
         X = thisNumPlayers
@@ -156,8 +157,13 @@ def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, t
     graphData(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "b")
     graphData(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "c")
 
-def graphData(fileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, graphType):
-    pointsListX, pointsListY = readFile(fileName)
+def graphData(importFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, graphType):
+    pointsListX, pointsListY = readFile(importFileName)
+    print(pointsListX, pointsListY)
+    powerTrendlineX, powerTrendlineY = power(pointsListX, pointsListY)
+##    linearTrendlineX, linearTrendlineY = linearRegression(pointsListX, pointsListY)
+##    logarithmicTrendlineX, logarithmicTrendlineY = logarithmic(pointsListX, pointsListY)
+##    exponentialTrendlineX, exponentialTrendlineY = exponential(pointsListX, pointsListY)
     plt.scatter(pointsListX, pointsListY)
     plt.xlabel(xStr)
     plt.ylabel(graphType + " Value")
@@ -172,9 +178,10 @@ def graphData(fileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, 
         fileName = "graphPointsNumPlayersPerGame/" + directory + "/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".png"
     elif (targetVar == 2):
         fileName = "graphPointsDiscrepancy/" + directory + "/Graph_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
+    os.remove(fileName)
     plt.savefig(fileName, dpi=72)
     plt.gcf().clear()
 
-##printPointsToDataFile(4, 3, 5, 6, "DataFormat.txt", 1, 0)
+printPointsToDataFile(50, 100000, 4, 560, "dataFormat.txt", 100, 0)
     
     
