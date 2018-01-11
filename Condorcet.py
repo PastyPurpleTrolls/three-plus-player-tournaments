@@ -24,14 +24,42 @@ class player:
 
 
 #Create Players Systematically
-def createXPlayers(x, lst, disparity):
-    i = 0
-    lastRating = 1000
-    while i < x:
-        lst.append(player(lastRating))
-        lastRating += disparity
-        lst[i].id = i
-        i+=1
+def createXPlayers(x, lst, disparity, distributionType):
+    if (distributionType == 0): ##even distribution
+        i = 0
+        minElo = 1000
+        currentElo = minElo
+        while i < x:
+            lst.append(player(currentElo))
+            currentElo += disparity
+            lst[i].id = i
+            i+=1
+    elif (distributionType == 1): ## normal distribution
+        disparityRange = disparity*x
+        minElo = 1000
+        maxElo = minElo + disparity
+        mean = ((disparityRange//2) + minElo)
+        stdDev = disparityRange//6
+        eloList = []
+        for i in range(x):
+            newRandomElo = normalvariate(mean, stdDev) 
+            eloList.append(newRandomElo)
+        eloList.sort()
+        for i in range(x):
+            print("%2.0f" % (eloList[i]))
+            lst.append(player(eloList[i]))
+            lst[i].id = i
+##    elif (distributionType == 2): ## bimodal distribution (evenly spread modes)
+##        disparityRange = disparity*x
+##        minElo = 1000
+##        maxElo = minElo + disparity
+##        mean = ((disparityRange//2) + minElo)
+##        stdDev = disparityRange//12
+##        eloList = []
+            
+
+            
+        
 
 
 #Create Matrix Systematically
@@ -286,7 +314,7 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName="", ti
     timeTaken = 0
     playMat = [] #Empty it
     condorSet = [] #Empty it
-    createXPlayers(numPlayers, playMat, disparity) #Fill it
+    createXPlayers(numPlayers, playMat, disparity, 0) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     
