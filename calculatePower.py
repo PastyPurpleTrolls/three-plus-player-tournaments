@@ -7,75 +7,91 @@ import matplotlib.pyplot as plt
 import inspect
 
 
-def leastSquares(xList, yList):
-    if (len(xList) == 0 or len(yList) == 0):
-        print("warning: empty file", fileName)
-        return
+def power(xList, yList):
+    emptyFile(xList, yList)
+    xList = logList(xList)
+    yList = logList(yList)
     r = linregress(xList, yList)
     b = r.slope
     c = exp(r.intercept)
     return [c, b]
+
+def linearRegression(xList, yList):
+    emptyFile(xList, yList)
+    r = linregress(xList, yList)
+    b = r.slope
+    c = r.intercept
+    return [c, b]
+
+def logarithmic(xList, yList):
+    emptyFile(xList, yList)
+    xList = logList(xList)
+    r = linregress(xList, yList)
+    b = r.slope
+    c = r.intercept
+    return [c, b]
+
+def exponential(xList, yList):
+    emptyFile(xList, yList)
+    yList = logList(yList)
+    r = linregress(xList, yList)
+    b = r.slope
+    c = exp(r.intercept)
+    return [c, b]
+
+def logList(lst):
+    loggedList = []
+    for each in lst:
+        if each == 0:
+            each = 0
+        else:
+            each = numpy.log(each)
+        loggedList.append(each)
+    return loggedList
+
+def emptyFile(xList, yList):
+    if (len(xList) == 0 or len(yList) == 0):
+        print("warning: empty file", fileName)
+    return
     
-def printEquationToDataFile(lsResults, fileName):
+def printEquationToDataFile(lsResults, importFileName, equationType):
     c = lsResults[0]
     b = lsResults[1]
-    printableResults = ("Equation: y =" +  str(c) + "* x^" + str(b))
-    dataFile = open("EquationsFile.txt", mode = 'a')
-    dataFile.write(fileName)
+    if (equationType == 0):
+        printableResults = ("Equation: y = " +  str(c) + " * x^" + str(b))
+        fileName = "PowerEquationsFile.txt"
+    if (equationType == 1):
+        printableResults = ("Equation: y = " +  str(b) + " * x + " + str(c))
+        fileName = "LinearRegressionEquationsFile.txt"
+    if (equationType == 2):
+        printableResults = ("Equation: y = (" +  str(c) + " * ln(x) + " + str(b))
+        fileName = "LogarithmicEquationsFile.txt"
+    if (equationType == 3):
+        printableResults = ("Equation: y = " +  str(c) + " * e^(" + str(b) + " * x)")
+        fileName = "ExponentialEquationsFile.txt"
+    dataFile = open(fileName, mode = 'a')
+    dataFile.write(importFileName)
     dataFile.write(": ")
     dataFile.write(printableResults)
     dataFile.write("\n")
     dataFile.close()
 
-def printCPointsToDataFile(lsResults, x, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy):
-    c = lsResults[0]
+def writePointsToDataFile(lsResults, x, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, directory):
+    if (directory == "bPoints"):
+        results = lsResults[1]
+    elif (directory == "cPoints"):
+        results = lsResults[0]
     if (targetVar == 0):
-        fileName = "graphPointsNumPlayers/cPoints/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
+        fileName = "graphPointsNumPlayers/" + directory + "/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
     elif (targetVar == 1):
-        fileName = "graphPointsNumPlayersPerGame/cPoints/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".txt"
+        fileName = "graphPointsNumPlayersPerGame/" + directory + "/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".txt"
     elif (targetVar == 2):
-        fileName = "graphPointsDiscrepancy/cPoints/_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
+        fileName = "graphPointsDiscrepancy/" + directory + "/_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
     dataFile = open(fileName, mode = 'a') 
-    dataFile.write(str(x) + "," + str(c))
+    dataFile.write(str(x) + "," + str(results))
     dataFile.write("\n")
     dataFile.close()
     return fileName
-
-def printBPointsToDataFile(lsResults, x, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy):
-    b = lsResults[1]
-    if (targetVar == 0):
-        fileName = "graphPointsNumPlayers/bPoints/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
-    elif (targetVar == 1):
-        fileName = "graphPointsNumPlayersPerGame/bPoints/_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".txt"
-    elif (targetVar == 2):
-        fileName = "graphPointsDiscrepancy/bPoints/_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".txt"
-    dataFile = open(fileName, mode = 'a') 
-    dataFile.write(str(x) + "," + str(b))
-    dataFile.write("\n")
-    dataFile.close()
-    return fileName
-
-def readFileLog(fileName):
-    try:
-        r = open(fileName, mode = 'r')
-    except FileNotFoundError:
-        print("warning: file not found", fileName)
-        return [], []
-    else:
-        data = r.readlines()
-        xPoints = []
-        yPoints = []
-        for line in data:
-            if (line[0:-1] == "\n"):
-                line = line[0:-1]
-            splitLine = line.split(",")
-            xPoints.append(numpy.log(int(splitLine[0])))
-            if (float(splitLine[1]) == 0.0):
-                yPoints.append(0)
-            else:
-                yPoints.append(numpy.log(float(splitLine[1])))
-        r.close()
-        return xPoints, yPoints
 
 def readFile(fileName):
     try:
@@ -99,15 +115,33 @@ def readFile(fileName):
         r.close()
         return xPoints, yPoints
 
-def calculateLeastSquares(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
-    pointsListx, pointsListy = readFileLog(fileName)
-    result = leastSquares(pointsListx, pointsListy)
-    printEquationToDataFile(result, fileName)
+def calculatePower(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
+    pointsListx, pointsListy = readFile(fileName)
+    result = power(pointsListx, pointsListy)
+    equationType = 0
+    printEquationToDataFile(result, fileName, equationType)
+
+def calculateLinearRegression(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
+    pointsListx, pointsListy = readFile(fileName)
+    result = linearRegression(pointsListx, pointsListy)
+    equationType = 1
+    printEquationToDataFile(result, fileName, equationType)
+
+def calculateLogarithmic(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
+    pointsListx, pointsListy = readFile(fileName)
+    result = logarithmic(pointsListx, pointsListy)
+    equationType = 2
+    printEquationToDataFile(result, fileName, equationType)
+
+def calculateExponential(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit):
+    pointsListx, pointsListy = readFile(fileName)
+    result = exponential(pointsListx, pointsListy)
+    equationType = 3
+    printEquationToDataFile(result, fileName, equationType)
 
 def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar):
-    print(thisDiscrepancy)
-    pointsListx, pointsListy = readFileLog(fileName)
-    result = leastSquares(pointsListx, pointsListy)
+    pointsListx, pointsListy = readFile(fileName)
+    result = power(pointsListx, pointsListy)
     if (targetVar == 0):
         X = thisNumPlayers
         xStr = "Number of Players"
@@ -117,37 +151,30 @@ def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, t
     elif (targetVar == 2):
         X = thisDiscrepancy
         xStr = "Discrepancy"
-    cFileName = printCPointsToDataFile(result, X, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
-    bFileName = printBPointsToDataFile(result, X, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
-    graphDataB(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
-    graphDataC(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy)
+    bFileName = writePointsToDataFile(result, X, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "bPoints")
+    cFileName = writePointsToDataFile(result, X, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "cPoints")
+    graphData(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "b")
+    graphData(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "c")
 
-def graphDataB(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy):
-    pointsListXB, pointsListYB = readFile(bFileName)
-    plt.figure(figsize=(8,6), dpi=80)
-    plt.scatter(pointsListXB, pointsListYB)
+def graphData(fileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, graphType):
+    pointsListX, pointsListY = readFile(fileName)
+    plt.scatter(pointsListX, pointsListY)
     plt.xlabel(xStr)
-    plt.ylabel("B Value")
+    plt.ylabel(graphType + " Value")
+    directory = ""
+    if (graphType == "b"):
+        directory = "bPoints"
+    elif (graphType == "c"):
+        directory = "cPoints"
     if (targetVar == 0):
-        fileName = "graphPointsNumPlayers/bPoints/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
+        fileName = "graphPointsNumPlayers/" + directory + "/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
     elif (targetVar == 1):
-        fileName = "graphPointsNumPlayersPerGame/bPoints/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".png"
+        fileName = "graphPointsNumPlayersPerGame/" + directory + "/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".png"
     elif (targetVar == 2):
-        fileName = "graphPointsDiscrepancy/bPoints/Graph_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
+        fileName = "graphPointsDiscrepancy/" + directory + "/Graph_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
     plt.savefig(fileName, dpi=72)
+    plt.gcf().clear()
+
+##printPointsToDataFile(4, 3, 5, 6, "DataFormat.txt", 1, 0)
     
-def graphDataC(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy):
-    pointsListXC, pointsListYC = readFile(cFileName)
-    plt.figure(figsize=(8,6), dpi=80)
-    plt.scatter(pointsListXC, pointsListYC)
-    plt.xlabel(xStr)
-    plt.ylabel("C Value")
-    if (targetVar == 0):
-        fileName = "graphPointsNumPlayers/cPoints/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
-    elif (targetVar == 1):
-        fileName = "graphPointsNumPlayersPerGame/cPoints/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".png"
-    elif (targetVar == 2):
-        fileName = "graphPointsDiscrepancy/cPoints/Graph_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
-    plt.savefig(fileName, dpi=72)
-
-##printPointsToDataFile(4, 2, 3, 5, "dataFormat.txt", 5, 0)    
+    
