@@ -5,38 +5,47 @@ import numpy
 import CondorcetDriver
 import matplotlib.pyplot as plt
 import inspect
+import os
 
 
 def power(xList, yList):
-    emptyFile(xList, yList)
-    xList = logList(xList)
-    yList = logList(yList)
-    r = linregress(xList, yList)
-    b = r.slope
-    c = exp(r.intercept)
+    if (emptyFile(xList, yList) == True):
+        return -1
+    else:
+        xList = logList(xList)
+        yList = logList(yList)
+        r = linregress(xList, yList)
+        b = r.slope
+        c = exp(r.intercept)
     return [c, b]
 
 def linearRegression(xList, yList):
-    emptyFile(xList, yList)
-    r = linregress(xList, yList)
-    b = r.slope
-    c = r.intercept
+    if (emptyFile(xList, yList) == True):
+        return -1
+    else:
+        r = linregress(xList, yList)
+        b = r.slope
+        c = r.intercept
     return [c, b]
 
 def logarithmic(xList, yList):
-    emptyFile(xList, yList)
-    xList = logList(xList)
-    r = linregress(xList, yList)
-    b = r.slope
-    c = r.intercept
+    if (emptyFile(xList, yList) == True):
+        return -1
+    else:
+        xList = logList(xList)
+        r = linregress(xList, yList)
+        b = r.slope
+        c = r.intercept
     return [c, b]
 
 def exponential(xList, yList):
-    emptyFile(xList, yList)
-    yList = logList(yList)
-    r = linregress(xList, yList)
-    b = r.slope
-    c = exp(r.intercept)
+    if (emptyFile(xList, yList) == True):
+        return -1
+    else:
+        yList = logList(yList)
+        r = linregress(xList, yList)
+        b = r.slope
+        c = exp(r.intercept)
     return [c, b]
 
 def logList(lst):
@@ -51,8 +60,9 @@ def logList(lst):
 
 def emptyFile(xList, yList):
     if (len(xList) == 0 or len(yList) == 0):
-        print("warning: empty file", fileName)
-    return
+        print("warning: empty file")
+        return True
+    return False
     
 def printEquationToDataFile(lsResults, importFileName, equationType):
     c = lsResults[0]
@@ -104,13 +114,11 @@ def readFile(fileName):
         xPoints = []
         yPoints = []
         for line in data:
-            if (line[0:-1] == "\n"):
-                line = line[0:-1]
-            splitLine = line.split(",")
-            xPoints.append(float(splitLine[0]))
-            if (float(splitLine[1]) == 0.0):
-                yPoints.append(0)
-            else:
+            if (line != "\n"):
+                if (line[-1:] == "\n"):
+                    line = line[0:-1]
+                splitLine = line.split(",")
+                xPoints.append(float(splitLine[0]))
                 yPoints.append(float(splitLine[1]))
         r.close()
         return xPoints, yPoints
@@ -139,8 +147,8 @@ def calculateExponential(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, th
     equationType = 3
     printEquationToDataFile(result, fileName, equationType)
 
-def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar):
-    pointsListx, pointsListy = readFile(fileName)
+def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, importFileName, timeLimit, targetVar):
+    pointsListx, pointsListy = readFile(importFileName)
     result = power(pointsListx, pointsListy)
 ##    print(fileName, ": Equation: y =", result[0], "* x^",result[1])
     equation = (fileName + ": Equation: y =" + str(result[0]) + "* x^" + str(result[1]) + "\n")
@@ -161,25 +169,66 @@ def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, t
     graphData(bFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "b")
     graphData(cFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, "c")
 
-def graphData(fileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, graphType):
-    pointsListX, pointsListY = readFile(fileName)
+def graphData(importFileName, xStr, targetVar, thisNumPlayers, thisNumPlayersPerGame, thisDiscrepancy, graphType):
+    pointsListX, pointsListY = readFile(importFileName)
     plt.scatter(pointsListX, pointsListY)
     plt.xlabel(xStr)
     plt.ylabel(graphType + " Value")
     directory = ""
+    positiveListY = []
     if (graphType == "b"):
         directory = "bPoints"
+        for each in pointsListY:
+            if each >= 0:
+                each = 0
+            else:
+                each = each * -1
+            positiveListY.append(each)
+        powerTrendlineC, powerTrendlineB = power(pointsListX, positiveListY)
+        exponentialTrendlineC, exponentialTrendlineB = exponential(pointsListX, positiveListY)
     elif (graphType == "c"):
         directory = "cPoints"
+        powerTrendlineC, powerTrendlineB = power(pointsListX, pointsListY)
+        exponentialTrendlineC, exponentialTrendlineB = exponential(pointsListX, pointsListY)
+    linearTrendlineC, linearTrendlineB = linearRegression(pointsListX, pointsListY)
+    logarithmicTrendlineC, logarithmicTrendlineB = logarithmic(pointsListX, pointsListY)
+    print(logarithmicTrendlineC, logarithmicTrendlineB)
+    maxX = max(pointsListX)
+    powerLineX = numpy.linspace(1, maxX, 100)
+    powerLineY= []
+    for each in powerLineX:
+        powerLineY.append(powerTrendlineC * numpy.power(each,powerTrendlineB))
+    
+    linearLineX = numpy.linspace(1, maxX, 100)
+    linearLineY= []
+    for each in linearLineX:
+        linearLineY.append(linearTrendlineB * each + linearTrendlineC)
+   
+    logarithmicLineX = numpy.linspace(1, maxX, 100)
+    logarithmicLineY= []
+    for each in logarithmicLineX:
+        logarithmicLineY.append(logarithmicTrendlineB * numpy.log(each) + logarithmicTrendlineC)
+    
+    exponentialLineX = numpy.linspace(1, maxX, 100)
+    exponentialLineY= []
+    for each in exponentialLineX:
+        exponentialLineY.append(exponentialTrendlineC * exp(each * exponentialTrendlineB))
+    
+    plt.plot(powerLineX,powerLineY, color="green") ##works
+    plt.plot(linearLineX,linearLineY, color="red")
+    plt.plot(logarithmicLineX,logarithmicLineY, color="blue")
+    plt.plot(exponentialLineX,exponentialLineY, color="black") ##works
     if (targetVar == 0):
         fileName = "graphPointsNumPlayers/" + directory + "/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
     elif (targetVar == 1):
         fileName = "graphPointsNumPlayersPerGame/" + directory + "/Graph_Discrepancy" + str(thisDiscrepancy) + "_NumPlayers" + str(thisNumPlayers) + ".png"
     elif (targetVar == 2):
         fileName = "graphPointsDiscrepancy/" + directory + "/Graph_NumPlayers" + str(thisNumPlayers) + "_NumPlayersPerGame" + str(thisNumPlayersPerGame) + ".png"
+    if (os.path.exists(fileName)):
+        os.remove(fileName)
     plt.savefig(fileName, dpi=72)
     plt.gcf().clear()
 
-##printPointsToDataFile(4, 3, 5, 6, "DataFormat.txt", 1, 0)
+####printPointsToDataFile(50, 100, 4, 560, "dataFormat.txt", 100, 0)
     
     
