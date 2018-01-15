@@ -142,6 +142,11 @@ def calculateExponential(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, th
 def printPointsToDataFile(thisNumPlayers, thisNumGames, thisNumPlayersPerGame, thisDiscrepancy, fileName, timeLimit, targetVar):
     pointsListx, pointsListy = readFile(fileName)
     result = power(pointsListx, pointsListy)
+##    print(fileName, ": Equation: y =", result[0], "* x^",result[1])
+    equation = (fileName + ": Equation: y =" + str(result[0]) + "* x^" + str(result[1]) + "\n")
+    JacobsTest = open("NormalEquations.txt", "a")##Jacob added this line and the next two for testing, feel free to delete
+    JacobsTest.write(equation)
+    JacobsTest.close()
     if (targetVar == 0):
         X = thisNumPlayers
         xStr = "Number of Players"

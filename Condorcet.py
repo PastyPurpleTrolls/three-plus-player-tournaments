@@ -46,7 +46,7 @@ def createXPlayers(x, lst, disparity, distributionType):
             eloList.append(newRandomElo)
         eloList.sort()
         for i in range(x):
-            print("%2.0f" % (eloList[i]))
+##            print("%2.0f" % (eloList[i]))
             lst.append(player(eloList[i]))
             lst[i].id = i
 ##    elif (distributionType == 2): ## bimodal distribution (evenly spread modes)
@@ -314,7 +314,7 @@ def simulate(numPlayers, numGames, numPlayersPerGame, disparity, fileName="", ti
     timeTaken = 0
     playMat = [] #Empty it
     condorSet = [] #Empty it
-    createXPlayers(numPlayers, playMat, disparity, 0) #Fill it
+    createXPlayers(numPlayers, playMat, disparity, 1) #Fill it
     createMatrix(numPlayers, condorSet) #Fill it
     i = 0
     
